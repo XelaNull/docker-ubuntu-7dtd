@@ -45,10 +45,10 @@ unzip 7dtd-ServerTools-12.7.zip
 # Sqllite3 Manual Compile/Fix for ServerTools 12.7
 apt-get install g++ -y
 cd $INSTALL_DIR && mkdir sqllite3 && cd sqllite3 && \
-wget https://system.data.sqlite.org/downloads/1.0.109.0/sqlite-netFx-full-source-1.0.109.0.zip && \
+cp /sqlite-netFx-full-source-1.0.109.0.zip . && \
 unzip sqlite-netFx-full-source-*.zip && \
-cd Setup && chmod a+x compile-interop-assembly-release.sh && ./compile-interop-assembly-release.sh && \
-cp ../bin/2013/Release/bin/* $INSTALL_DIR/7DaysToDieServer_Data/Mono/x86_64
+cd Setup && chmod a+x compile-interop-assembly-release.sh && ./compile-interop-assembly-release.sh
+#cp ../bin/2013/Release/bin/* $INSTALL_DIR/7DaysToDieServer_Data/Mono/x86_64
 
 # Just Survive + Better RWG
 # Getting Warnings regarding trader wilderness settings in rwgmixer, when combined with COMPOPACK

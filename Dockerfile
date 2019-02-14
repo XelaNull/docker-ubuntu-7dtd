@@ -33,7 +33,7 @@ apt-get install lib32gcc1 steamcmd -y && \
 useradd -m -s /bin/bash steam && echo steam:newpassword
 
 # 7DTD START/STOP/SENDCMD
-RUN printf '#!/bin/bash\nexport INSTALL_DIR=/data/7DTD\nif pidof -o %PPID -x "loop_start_7dtd.sh"; then exit; fi\n' > /loop_start_7dtd.sh && \
+RUN echo '#!/bin/bash\nexport INSTALL_DIR=/data/7DTD\nif pidof -o %PPID -x "loop_start_7dtd.sh"; then exit; fi\n' > /loop_start_7dtd.sh && \
     printf 'while true; do if [ -f /7dtd.initialized ]; then break; fi; sleep 6; done \n' >> /loop_start_7dtd.sh && \
     printf 'while true; do \nif [[ -f $INSTALL_DIR/7DaysToDieServer.x86_64 ]] && [[ `cat $INSTALL_DIR/server.expected_status` == "start" ]]; then \n' >> /loop_start_7dtd.sh && \
     printf 'SERVER_PID=`ps awwux | grep -v grep | grep 7DaysToDieServer.x86_64`; \n' >> /loop_start_7dtd.sh && \
@@ -50,7 +50,7 @@ RUN printf '#!/usr/bin/expect\nset timeout 5\nset command [lindex $argv 0]\n' > 
 
 # Install 7DTD Auto-Reveal Map
 RUN git clone https://github.com/XelaNull/7dtd-auto-reveal-map.git && chmod a+x /7dtd-auto-reveal-map/*.sh
-RUN printf '#!/bin/bash\nexport INSTALL_DIR=/data/7DTD\nif pidof -o %PPID -x "loop_start_autoreveal.sh"; then exit; fi\n' > /loop_start_autoreveal.sh && \
+RUN echo '#!/bin/bash\nexport INSTALL_DIR=/data/7DTD\nif pidof -o %PPID -x "loop_start_autoreveal.sh"; then exit; fi\n' > /loop_start_autoreveal.sh && \
     printf 'while true; do if [ -f /7dtd.initialized ]; then break; fi; sleep 6; done \n' >> /loop_start_autoreveal.sh && \
     printf 'while true; do \nif [[ -f $INSTALL_DIR/7DaysToDieServer.x86_64 ]] && [[ `cat $INSTALL_DIR/auto-reveal.status` == "start" ]]; then \n' >> /loop_start_autoreveal.sh && \
     printf 'SERVER_PID=`ps awwux | grep -v grep | grep 7DaysToDieServer.x86_64`; \n' >> /loop_start_autoreveal.sh && \
@@ -70,6 +70,7 @@ COPY replace.sh /replace.sh
 COPY index.php /index.php
 COPY 7dtd-daemon.php /7dtd-daemon.php
 COPY COMPOPACK_35.zip /COMPOPACK_35.zip
+COPY sqlite-netFx-full-source-1.0.109.0.zip /sqlite-netFx-full-source-1.0.109.0.zip
 COPY Red_Eagle_LXIXs_A17_Modlet_Collection.zip /Red_Eagle_LXIXs_A17_Modlet_Collection.zip
 COPY VanillaPlusModletCollection_1_2_Experimental.rar /VanillaPlusModletCollection_1_2_Experimental.rar
 

@@ -9,7 +9,7 @@
 /replace.sh $INSTALL_DIR/Data/Prefabs/skyscraper_03.xml downtown "commercial,downtown" Zoning
 /replace.sh $INSTALL_DIR/Data/Prefabs/skyscraper_04.xml downtown "commercial,downtown" Zoning
 
-/replace.sh $INSTALL_DIR/serverconfig.xml "My Game Host" "SANITYS EDGE | MODDED | CUSTOM 8K MAP | EXPERIMENTAL" ServerName
+/replace.sh $INSTALL_DIR/serverconfig.xml "My Game Host" "SANITYS EDGE . MODDED . CUSTOM 8K MAP . EXPERIMENTAL" ServerName
 /replace.sh $INSTALL_DIR/serverconfig.xml "8" "24" ServerMaxPlayerCount
 /replace.sh $INSTALL_DIR/serverconfig.xml "0" "2" 'name="ServerAdminSlots"'
 /replace.sh $INSTALL_DIR/serverconfig.xml "A 7 Days to Die server" "An experimental heavily-modded 7DTD Server, using a custom RWG-tweaked map, and over 350 new buildings. ServerTools installed. Modlets: Vanilla+, Red Eagle, Just Survive. No client side installation needed." ServerDescription
