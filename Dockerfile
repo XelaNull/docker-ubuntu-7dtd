@@ -2,8 +2,8 @@ FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y && apt-get install wget rsync sudo git supervisor python vim software-properties-common \
-    apache2 php mysql-server libapache2-mod-php php-mysql cron mlocate net-tools syslog-ng telnet expect unzip -y
+RUN apt-get update -y && apt-get install wget rsync sudo git supervisor python vim software-properties-common g++ \
+    apache2 php mysql-server libapache2-mod-php php-mysql cron mlocate net-tools syslog-ng telnet expect unzip sqlite3 -y
 
 # Create beginning of supervisord.conf file
 RUN printf '[supervisord]\nnodaemon=true\nuser=root\nlogfile=/var/log/supervisord\n' > /etc/supervisord.conf && \
@@ -65,14 +65,8 @@ RUN sed -i 's|www-data|steam|g' /etc/apache2/envvars && \
     printf 'Alias "/7dtd" "/data/7DTD/html"\n<Directory "/data/7DTD">\n\tRequire all granted\n\tOptions all\n\tAllowOverride all\n</Directory>\n' > /etc/apache2/sites-enabled/001-7dtd.conf
 
 COPY install_7dtd.sh /install_7dtd.sh
-COPY 7dtd-APPLY-CONFIG.sh /7dtd-APPLY-CONFIG.sh
 COPY replace.sh /replace.sh
-COPY index.php /index.php
 COPY 7dtd-daemon.php /7dtd-daemon.php
-COPY COMPOPACK_35.zip /COMPOPACK_35.zip
-COPY sqlite-netFx-full-source-1.0.109.0.zip /sqlite-netFx-full-source-1.0.109.0.zip
-COPY Red_Eagle_LXIXs_A17_Modlet_Collection.zip /Red_Eagle_LXIXs_A17_Modlet_Collection.zip
-COPY VanillaPlusModletCollection_1_2_Experimental.rar /VanillaPlusModletCollection_1_2_Experimental.rar
 
 RUN chmod a+x /*.sh /*.php && apt-get clean
 
