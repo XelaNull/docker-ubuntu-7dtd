@@ -55,7 +55,6 @@ RUN sed -i 's|www-data|steam|g' /etc/apache2/envvars && \
     printf 'Alias "/7dtd" "/data/7DTD/html"\n<Directory "/data/7DTD">\n\tRequire all granted\n\tOptions all\n\tAllowOverride all\n</Directory>\n' > /etc/apache2/sites-enabled/001-7dtd.conf
 
 COPY install_7dtd.sh /install_7dtd.sh
-COPY replace.sh /replace.sh
 COPY 7dtd-daemon.php /7dtd-daemon.php
 
 RUN chmod a+x /*.sh /*.php && apt-get clean
