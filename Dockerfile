@@ -48,16 +48,6 @@ RUN printf '#!/usr/bin/expect\nset timeout 5\nset command [lindex $argv 0]\n' > 
     printf 'send "$command\\r"\nsend "exit\\r";\nexpect eof;\n' >> /7dtd-sendcmd.sh && \
     printf 'send_user "Sent command to 7DTD: $command\\n"' >> /7dtd-sendcmd.sh
 
-# Install 7DTD Auto-Reveal Map
-RUN git clone https://github.com/XelaNull/7dtd-auto-reveal-map.git && chmod a+x /7dtd-auto-reveal-map/*.sh
-RUN echo '#!/bin/bash\nexport INSTALL_DIR=/data/7DTD\nif pidof -o %PPID -x "loop_start_autoreveal.sh"; then exit; fi\n' > /loop_start_autoreveal.sh && \
-    printf 'while true; do if [ -f /7dtd.initialized ]; then break; fi; sleep 6; done \n' >> /loop_start_autoreveal.sh && \
-    printf 'while true; do \nif [[ -f $INSTALL_DIR/7DaysToDieServer.x86_64 ]] && [[ `cat $INSTALL_DIR/auto-reveal.status` == "start" ]]; then \n' >> /loop_start_autoreveal.sh && \
-    printf 'SERVER_PID=`ps awwux | grep -v grep | grep 7DaysToDieServer.x86_64`; \n' >> /loop_start_autoreveal.sh && \
-    printf '[[ -z $SERVER_PID ]] && /data/7DTD/7dtd-auto-reveal-map/7dtd-run-after-initial-start.sh /data/7DTD \n' >> /loop_start_autoreveal.sh && \
-    printf 'fi \nsleep 2 \ndone' >> /loop_start_autoreveal.sh
-RUN su - steam -c "(/usr/bin/crontab -l 2>/dev/null; echo '* * * * * /loop_start_autoreveal.sh') | /usr/bin/crontab -"
-
 # Reconfigure Apache to run under steam username, to retain ability to modify steam's files
 RUN sed -i 's|www-data|steam|g' /etc/apache2/envvars && \
     chown steam:steam /var/www/html -R && \
