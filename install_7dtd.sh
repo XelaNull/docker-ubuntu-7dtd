@@ -12,7 +12,7 @@ set -e
 rm -rf $INSTALL_DIR
 
 # Set up the installation directory
-[[ ! -d $INSTALL_DIR ]] && mkdir -p $INSTALL_DIR/html; 
+[[ ! -d $INSTALL_DIR ]] && mkdir -p $INSTALL_DIR; 
 chown steam:steam $INSTALL_DIR /home/steam -R
 
 # Set up extra variables we will use, if they are present
@@ -27,9 +27,7 @@ su steam -c "/usr/games/steamcmd +login $STEAMCMD_LOGIN $STEAMCMD_PASSWORD \
 
 cd $INSTALL_DIR
 git clone https://github.com/XelaNull/7dtd-servermod.git
-cd 7dtd-servermod && chmod a+x install_mods.sh && \
-cp index.php $INSTALL_DIR/html/
-./install_mods.sh $INSTALL_DIR
+cd 7dtd-servermod && chmod a+x install_mods.sh && su steam -c "./install_mods.sh $INSTALL_DIR"
 
 chown steam:steam $INSTALL_DIR /home/steam -R
 echo "Stopping 7DTD to kick off new world generation (if name changes)" && /stop_7dtd.sh
