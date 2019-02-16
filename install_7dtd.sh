@@ -13,6 +13,7 @@ rm -rf $INSTALL_DIR
 
 # Set up the installation directory
 [[ ! -d $INSTALL_DIR/.local ]] && mkdir -p $INSTALL_DIR/.local; 
+[[ ! -d $INSTALL_DIR/Mods ]] && mkdir -p $INSTALL_DIR/Mods;
 chown steam:steam $INSTALL_DIR $INSTALL_DIR/.local /home/steam -R
 ln -s $INSTALL_DIR/.local /home/steam/.local
 
