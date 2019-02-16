@@ -12,8 +12,9 @@ set -e
 rm -rf $INSTALL_DIR
 
 # Set up the installation directory
-[[ ! -d $INSTALL_DIR ]] && mkdir -p $INSTALL_DIR; 
-chown steam:steam $INSTALL_DIR /home/steam -R
+[[ ! -d $INSTALL_DIR/.local ]] && mkdir -p $INSTALL_DIR/.local; 
+chown steam:steam $INSTALL_DIR $INSTALL_DIR/.local /home/steam -R
+ln -s $INSTALL_DIR/.local /home/steam/.local
 
 # Set up extra variables we will use, if they are present
 [ -z "$STEAMCMD_NO_VALIDATE" ]   && validate="validate"
