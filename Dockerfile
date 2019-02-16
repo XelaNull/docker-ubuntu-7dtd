@@ -2,6 +2,8 @@ FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ENV TELNET_PASSWORD=sanity
+ENV TELNET_PORT=8081
 RUN apt-get update -y && apt-get install wget rsync sudo git supervisor python vim software-properties-common g++ \
     apache2 php mysql-server libapache2-mod-php php-mysql cron mlocate net-tools syslog-ng telnet expect unzip sqlite3 -y
 
