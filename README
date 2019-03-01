@@ -2,11 +2,15 @@ This project seeks to create a better 7DTD Gameserver platform that can be confi
 
 **TO BUILD**
 
+Be sure to copy this command carefully!
+
 ```
 time docker build -t u18/7dtd .
 ```
 
-**TO RUN** First, create a Steam account specifically for your server. Use these credentials below.
+**TO RUN** 
+
+First, create a Steam account specifically for your server. Use these credentials below.
 
 ```
 docker run -dt -v$(pwd)/data:/data \
