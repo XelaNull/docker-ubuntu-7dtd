@@ -27,7 +27,7 @@ This project seeks to create a better 7DTD Game server platform that can be conf
 ```
 time docker build \
   --build-arg INSTALL_DIR="/data/7DTD" \
-  --build-arg TELNET_PW="sanity" \
+  --build-arg TELNET_PW="YOUR_TELNET_PASSWORD" \
   -t u18/7dtd .
 ```
 
