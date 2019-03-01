@@ -1,16 +1,19 @@
-This project seeks to create a better 7DTD Game server platform that can be configured and managed from the built-in webserver. This project results in a 7dtd Linux game server with:
+This project seeks to create a better 7DTD Game server platform that can be configured and managed from the built-in webserver.
 
-- COMPO-PACK
-- Over 450 Modlets available for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
-- Web Interface to manage your server, featuring:
+**Current features of this project:**
+
+- 7DTD-ServerMod Manager : Web Interface to manage your server
 
   - Start/Stop/Force Stop 7DTD Game server
   - View Game server log
   - Edit serverconfig.xml or any XML under Data/Config
-  - Nearly 500 modlets easily activated/deactivated with just a check/uncheck and restart of your game server
+  - Easy activation of pre-installed modlets
   - Auto-Exploration of World rendered map
   - Random-World-Generation analysis to inform you on the placement of prefabs within your generated random seed
   - Authentication utilizes 7DTD Telnet password, to keep the configuration simple
+
+- COMPO-PACK Prefabs installed, providing over 250 new buildings. Suggest using Modlet 'The Wild Land' to implement the Prefabs for placement during RWG.
+- Over 450 Modlets pre-installed for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
 
 **Future features:**
 
@@ -33,7 +36,7 @@ time docker build \
 
 # TO RUN
 
-First, create a Steam account specifically for your server. Use these credentials below.
+**_Create a Steam account specifically for your server. Use these credentials below._**
 
 ```
 docker run -dt -v$(pwd)/data:/data \
