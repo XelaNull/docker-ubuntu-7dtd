@@ -1,12 +1,17 @@
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
-
+# In most cases there should not be a need to adjust this port. If you need to move this to a different
+# port.. instead, just change your docker run command to bind this port externally to whatever port you want.
 ENV TELNET_PORT=8081
 RUN apt-get update -y && apt-get install wget rsync sudo git supervisor python vim software-properties-common g++ \
     apache2 php mysql-server libapache2-mod-php php-mysql cron mlocate net-tools syslog-ng telnet expect unzip sqlite3 php-sqlite3 -y
 
 # Create beginning of supervisord.conf file
+# Supervisor is needed to start all services up with this container is started
+# This is very much a hack as Docker is intended to be used with micro-services model.
+# I chose to design this project this way as this was the easiest way I could give a novice
+# just two or three commands to create an entire server with nothing more needed than git + docker.
 RUN printf '[supervisord]\nnodaemon=true\nuser=root\nlogfile=/var/log/supervisord\n' > /etc/supervisord.conf && \
 # Create start_httpd.sh script
     printf '#!/bin/bash\nrm -rf /run/httpd/httpd.pid\n/usr/sbin/apachectl start' > /start_httpd.sh && \
@@ -21,10 +26,11 @@ RUN printf '[supervisord]\nnodaemon=true\nuser=root\nlogfile=/var/log/supervisor
 echo "autostart     = true";\necho "autorestart   = false";\necho "directory     = /";\n\
 echo "command       = $2";\necho "startsecs     = 3";\necho "priority      = 1";\n\n' > /gen_sup.sh
 
-# rar, unrar
+# Install rar, unrar applications
 RUN wget https://www.rarlab.com/rar/rarlinux-x64-5.5.0.tar.gz && tar -zxf rarlinux-*.tar.gz && cp rar/rar rar/unrar /usr/local/bin/
 
-# Install STEAMCMD
+# Install the Steam Application (STEAMCMD)
+# Because this is Ubuntu, we can install it right from APT
 RUN add-apt-repository multiverse 
 RUN dpkg --add-architecture i386
 RUN apt-get update -y

@@ -2,8 +2,8 @@
 export INSTALL_DIR=/data/7DTD
 
 # Ensure critical environmental variables are present
-if [[ -z $STEAMCMD_LOGIN ]] || [[ -z $STEAMCMD_PASSWORD ]] || [[ -z $STEAMCMD_APP_ID ]]|| [[ -z $INSTALL_DIR ]] || [[ -z $7DTD_TELNET_PW ]]; then
-  echo "Missing one of the environmental variables: STEAMCMD_LOGIN, STEAMCMD_PASSWORD, STEAMCMD_APP_ID, INSTALL_DIR, 7DTD_TELNET_PW"
+if [[ -z $STEAMCMD_LOGIN ]] || [[ -z $STEAMCMD_PASSWORD ]] || [[ -z $STEAMCMD_APP_ID ]]|| [[ -z $INSTALL_DIR ]] || [[ -z $TELNET_PW ]]; then
+  echo "Missing one of the environmental variables: STEAMCMD_LOGIN, STEAMCMD_PASSWORD, STEAMCMD_APP_ID, INSTALL_DIR, TELNET_PW"
   exit 1
 fi
 set -e
