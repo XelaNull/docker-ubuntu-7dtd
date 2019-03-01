@@ -37,52 +37,14 @@ $autoreveal_character = trim(file_get_contents($INSTALL_DIR.'/auto-reveal.charac
 
 // If auto-reveal is installed, Switch for auto-reveal status
 if(is_file($INSTALL_DIR.'/7dtd-auto-reveal-map/7dtd-autoreveal-map.sh')) switch($autoreveal_status) 
-  { /*
-    // If value is start, we should run through procedure for starting it
-    case "start":
-      // Make sure that it isnt already running
-      $AUTOREVEAL_PID=exec("ps awwux | grep -v grep | grep expect | grep 7dtd-autoreveal-map.sh | awk '{print \$2}'");
-      if($AUTOREVEAL_PID!='') { echo "ERROR: Can't start what is already running.\n$AUTOREVEAL_PID"; break; }
-      
-      // Make sure that the 7DTD server is started
-      $SERVER_RUNNING_CHECK=exec('ps awwux | grep -v grep | grep 7DaysToDieServer.x86_64');
-      if($SERVER_RUNNING_CHECK=='') { echo "ERROR: Can't start due to the 7DTD server not being found in the process list."; break; }
-      
-      // Make sure that between the start and stop log message the start is the last entry in the log
-      // Will need to capture what those two log messages look like before I can code this part.
-      
-      // The Auto-Reveal character is set to "first", so we should run the initial Auto-Reveal script
-      if($autoreveal_character=='first')
-        {
-          // Start the initial Auto-Reveal script, so it can poll and wait for the first character to connect
-          exec("$INSTALL_DIR/7dtd-auto-reveal-map/7dtd-run-after-initial-start.sh $INSTALL_DIR &");
-        }
-      else // A character name was set, so we should directly run the script with that!
-        {
-          // Look up the currently generated MAP SIZE
-          $RADIATION_BORDER_WIDTH=350;
-          $MAPSIZE=exec("grep 'name=\"WorldGenSize\"' $INSTALL_DIR/serverconfig.xml | awk '{print $3}' | cut -d'\"' -f2");
-          
-          // Determine start & end coordinates
-          $ENDING_COORD=($MAPSIZE / 2) - $RADIATION_BORDER_WIDTH;
-          $STARTING_COORD=$ENDING_COORD*-1;
-          
-          // Gather the Telnet Port and password
-          $TELNETPORT=exec("grep 'name=\"TelnetPort\"' $INSTALL_DIR/serverconfig.xml | awk '{print $3} | cut -d'\"' -f2");
-          $TELNETPASSWORD=exec("grep 'name=\"TelnetPassword\"' $INSTALL_DIR/serverconfig.xml | awk '{print $3} | cut -d'\"' -f2");
-          
-          // Start the auto-reveal script
-          exec("$INSTALL_DIR/7dtd-auto-reveal-map/7dtd-autoreveal-map.sh $TELNETPORT \"$TELNETPASSWORD\" \"$autoreveal_character\" $STARTING_COORD $ENDING_COORD");
-        }
-    break;*/
-    
+  {     
     case "start":
     break;
     
     // If value is stop, we should run through procedure for stopping it
     case "stop":
       // Look for the PID of the INITIAL AUTOREVEAL script, so we can kill it too
-      $INITIAL_AUTOREVEAL_PID=exec("ps awwux | grep -v grep | grep expect | grep 7dtd-run-after-initial-start.sh | awk '{print \$2}'");
+      $INITIAL_AUTOREVEAL_PID=exec("ps awwux | grep -v grep | grep bash | grep 7dtd-run-after-initial-start.sh | awk '{print \$2}'");
       // If we find it running, we should stop it, too
       if($INITIAL_AUTOREVEAL_PID!='') exec("kill -9 $INITIAL_AUTOREVEAL_PID");
       // There is no graceful way to stop this other than kill -9
@@ -114,12 +76,14 @@ if(is_file($INSTALL_DIR.'/7DaysToDieServer.x86_64')) switch($server_expected_sta
     exec("/7dtd-sendcmd.sh \"shutdown\"");
     
     // If we are restarting, we should set the touch file to start on next iteration, then sleep to give server a chance to shutdown
-    if($server_exected_status=='restart')
+    if($server_expected_status=='restart')
       {
         file_put_contents($INSTALL_DIR.'/auto-reveal.status','stop'); // Ensure the Auto-Reveal script is stopped, since the 7DTD Stopped
         file_put_contents($INSTALL_DIR.'/server.expected_status','start'); // Set this script to start the server back up
         sleep(15); // Give the server a chance to stop, before continuing to next iteration starting it back up
       }
+    if($server_expected_status=='stop') file_put_contents($INSTALL_DIR.'/auto-reveal.status','stop'); // Ensure the Auto-Reveal script is stopped, since the 7DTD Stopped
+
     break;
 
     // The hope and intention is that this should never be needed. But as the old saying goes:
