@@ -9,7 +9,7 @@ fi
 set -e
 
 # Erase Existing Application directory
-rm -rf $INSTALL_DIR
+# rm -rf $INSTALL_DIR
 
 # Set up the installation directory
 [[ ! -d $INSTALL_DIR/.local ]] && mkdir -p $INSTALL_DIR/.local; 
