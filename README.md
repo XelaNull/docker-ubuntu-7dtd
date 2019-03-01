@@ -2,13 +2,13 @@ This project seeks to create a website-controlled 7DTD Game server platform that
 
 **Current features of this project:**
 
-- 7DTD-ServerMod Manager : Web Interface to manage your server
+- [7DTD-ServerMod Manager](https://github.com/XelaNull/7dtd-servermod) : Web Interface to manage your server
 
   - Start/Stop/Force Stop 7DTD Game server
   - View Game server log
   - Edit serverconfig.xml or any XML under Data/Config
   - Easy activation of pre-installed modlets
-  - Auto-Exploration of World rendered map
+  - [Auto-Exploration of Map](https://github.com/XelaNull/7dtd-auto-reveal-map)
   - Random-World-Generation analysis to inform you on the placement of prefabs within your generated random seed
   - Authentication utilizes 7DTD Telnet password, to keep the configuration simple
 
