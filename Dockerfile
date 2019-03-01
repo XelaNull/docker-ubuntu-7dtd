@@ -4,6 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 # In most cases there should not be a need to adjust this port. If you need to move this to a different
 # port.. instead, just change your docker run command to bind this port externally to whatever port you want.
 ENV TELNET_PORT=8081
+ARG TELNET_PW
+ENV TELNET_PW=$TELNET_PW
+ARG INSTALL_DIR
+ENV INSTALL_DIR=$INSTALL_DIR
 RUN apt-get update -y && apt-get install wget rsync sudo git supervisor python vim software-properties-common g++ \
     apache2 php mysql-server libapache2-mod-php php-mysql cron mlocate net-tools syslog-ng telnet expect unzip sqlite3 php-sqlite3 -y
 
