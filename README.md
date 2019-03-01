@@ -1,15 +1,15 @@
-This project seeks to create a better 7DTD Gameserver platform that can be configured and managed from the built-in webserver. This project results in a 7dtd Linux game server with:
+This project seeks to create a better 7DTD Game server platform that can be configured and managed from the built-in webserver. This project results in a 7dtd Linux game server with:
 
 - COMPO-PACK
 - Over 450 Modlets available for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
 - Web Interface to manage your server, featuring:
 
-  - Start/Stop/Force Stop 7DTD Gameserver
-  - View Gameserver log
+  - Start/Stop/Force Stop 7DTD Game server
+  - View Game server log
   - Edit serverconfig.xml or any XML under Data/Config
-  - Nearly 500 modlets pre-installed, easily activated/deactivated with just a check/uncheck and restart of your gameserver
+  - Nearly 500 modlets easily activated/deactivated with just a check/uncheck and restart of your game server
   - Auto-Exploration of World rendered map
-  - RWG World Analysis with stats to inform you on the placement of prefabs within your randomly generated world seed
+  - Random-World-Generation analysis to inform you on the placement of prefabs within your generated random seed
   - Authentication utilizes 7DTD Telnet password, to keep the configuration simple
 
 **Future features:**
@@ -42,11 +42,10 @@ docker run -dt -v$(pwd)/data:/data \
   -e STEAMCMD_LOGIN=YOUR_STEAM_USERNAME \
   -e STEAMCMD_PASSWORD='YOUR_STEAM_PASSWORD' \
   -e STEAMCMD_APP_ID=294420 -e 7DTD_AUTOREVEAL_MAP=true \
-
   --name=u18-7dtd u18/7dtd
 ```
 
-# TO INSTALL STEAM GAME
+# TO INSTALL STEAM GAME: 7 Days to Die
 
 This command will initiate a Steam Guard request and require you to type in the code that Steam emails you. When this command completes, your server will begin generating a new world and will start the server.
 
