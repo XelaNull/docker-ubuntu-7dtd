@@ -1,4 +1,22 @@
-This project seeks to create a better 7DTD Gameserver platform that can be configured and managed from the built-in webserver.
+This project seeks to create a better 7DTD Gameserver platform that can be configured and managed from the built-in webserver. This project results in a 7dtd Linux game server with:
+ * COMPO-PACK
+ * Over 450 Modlets available for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
+ * Web Interface to manage your server, featuring:
+  - Start/Stop/Force Stop 7DTD Gameserver
+  - View Gameserver log
+  - Edit serverconfig.xml or any XML under Data/Config
+  - Nearly 500 modlets pre-installed, easily activated/deactivated with just a check/uncheck and restart of your gameserver
+  - Auto-Exploration of World rendered map
+  - RWG World Analysis with stats to inform you on the placement of prefabs within your randomly generated world seed
+  - Authentication utilizes 7DTD Telnet password, to keep the configuration simple
+  
+Future features:
+  - Backup/Restore of Modlet selections & Game Saves
+  - Better game update support, without full wipe
+  - Update individual Modlet or all Modlets, from web interface
+  - Improved log viewer
+  - Improved server status
+  
 
 **TO BUILD**
 
