@@ -23,7 +23,10 @@ Future features:
 Be sure to copy this command carefully!
 
 ```
-time docker build -t u18/7dtd .
+time docker build \
+  --build-arg INSTALL_DIR="/data/7DTD" \
+  --build-arg TELNET_PW="sanity" \
+  -t u18/7dtd .
 ```
 
 **TO RUN** 
@@ -37,8 +40,7 @@ docker run -dt -v$(pwd)/data:/data \
   -e STEAMCMD_LOGIN=YOUR_STEAM_USERNAME \
   -e STEAMCMD_PASSWORD='YOUR_STEAM_PASSWORD' \
   -e STEAMCMD_APP_ID=294420 -e 7DTD_AUTOREVEAL_MAP=true \
-  --build-arg INSTALL_DIR="/data/7DTD" \
-  --build-arg TELNET_PW="sanity" \
+
   --name=u18-7dtd u18/7dtd
 ```
 
