@@ -2,7 +2,6 @@ FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV TELNET_PASSWORD=sanity
 ENV TELNET_PORT=8081
 RUN apt-get update -y && apt-get install wget rsync sudo git supervisor python vim software-properties-common g++ \
     apache2 php mysql-server libapache2-mod-php php-mysql cron mlocate net-tools syslog-ng telnet expect unzip sqlite3 php-sqlite3 -y
@@ -46,7 +45,7 @@ RUN printf 'echo "start" > /data/7DTD/server.expected_status\n' > /start_7dtd.sh
 RUN printf 'echo "stop" > /data/7DTD/server.expected_status\n' > /stop_7dtd.sh
 RUN printf '#!/usr/bin/expect\nset timeout 5\nset command [lindex $argv 0]\n' > /7dtd-sendcmd.sh && \
     printf "spawn telnet 127.0.0.1 $TELNET_PORT\nexpect \"Please enter password:\"\n" >> /7dtd-sendcmd.sh && \
-    printf "send \"$TELNET_PASSWORD\\\r\"; sleep 1;\n" >> /7dtd-sendcmd.sh && \
+    printf "send \"$7DTD_TELNET_PW\\\r\"; sleep 1;\n" >> /7dtd-sendcmd.sh && \
     printf 'send "$command\\r"\nsend "exit\\r";\nexpect eof;\n' >> /7dtd-sendcmd.sh && \
     printf 'send_user "Sent command to 7DTD: $command\\n"' >> /7dtd-sendcmd.sh
 
