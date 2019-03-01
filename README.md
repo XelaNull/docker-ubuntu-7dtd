@@ -1,7 +1,9 @@
 This project seeks to create a better 7DTD Gameserver platform that can be configured and managed from the built-in webserver. This project results in a 7dtd Linux game server with:
- * COMPO-PACK
- * Over 450 Modlets available for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
- * Web Interface to manage your server, featuring:
+
+- COMPO-PACK
+- Over 450 Modlets available for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
+- Web Interface to manage your server, featuring:
+
   - Start/Stop/Force Stop 7DTD Gameserver
   - View Gameserver log
   - Edit serverconfig.xml or any XML under Data/Config
@@ -9,18 +11,18 @@ This project seeks to create a better 7DTD Gameserver platform that can be confi
   - Auto-Exploration of World rendered map
   - RWG World Analysis with stats to inform you on the placement of prefabs within your randomly generated world seed
   - Authentication utilizes 7DTD Telnet password, to keep the configuration simple
-  
-Future features:
-  - Backup/Restore of Modlet selections & Game Saves
-  - Better game update support, without full wipe
-  - Update individual Modlet or all Modlets, from web interface
-  - Improved log viewer
-  - Improved server status
-  
 
-**TO BUILD**
+**Future features:**
 
-Be sure to copy this command carefully!
+- Backup/Restore of Modlet selections & Game Saves
+- Better game update support, without full wipe
+- Update individual Modlet or all Modlets, from web interface
+- Improved log viewer
+- Improved server status
+
+# TO BUILD
+
+**_Be sure to copy these command carefully!_**
 
 ```
 time docker build \
@@ -29,7 +31,7 @@ time docker build \
   -t u18/7dtd .
 ```
 
-**TO RUN** 
+# TO RUN
 
 First, create a Steam account specifically for your server. Use these credentials below.
 
@@ -44,15 +46,15 @@ docker run -dt -v$(pwd)/data:/data \
   --name=u18-7dtd u18/7dtd
 ```
 
-**TO INSTALL STEAM GAME**
+# TO INSTALL STEAM GAME
 
-This command will initiate a Steam Guard request and require you to type in the code that Steam emails you. When this command completes, your server will begin generating a new world and will start the server. 
+This command will initiate a Steam Guard request and require you to type in the code that Steam emails you. When this command completes, your server will begin generating a new world and will start the server.
 
 ```
 docker exec -it u18-7dtd /install_7dtd.sh
 ```
 
-**TO ENTER**
+# TO ENTER
 
 ```
 docker exec -it u18-7dtd bash
