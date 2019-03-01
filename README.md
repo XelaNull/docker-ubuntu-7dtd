@@ -13,7 +13,6 @@ This project seeks to create a website-controlled 7DTD Game server platform that
   - Authentication utilizes 7DTD Telnet password, to keep the configuration simple
 
 - COMPO-PACK Prefabs installed, providing over 250 new buildings. Suggest using Modlet 'The Wild Land' to implement the Prefabs for placement during RWG.
-
 - Over 450 Modlets pre-installed for easy activation, including Alloc's Server Fixes, ServerTools, Bad Company, CSMM Patrons, The Wild Land, and many more
 
 **Future features:**
