@@ -24,6 +24,14 @@ $INSTALL_DIR=$argv[1];
 while (1) {
 // ####### MAIN BLOCK OF CODE ######## //  
 
+# Look at the most recently created directory to see if there is a WorldName.txt
+$NEWESTDIR=exec("ls -tr $INSTALL_DIR/Data/Worlds | tail -1");
+if(!file_exists("$INSTALL_DIR/Data/Worlds/$NEWESTDIR/WorldName.txt"))
+  {
+    $SEEDNAME=exec("grep 'name=\"WorldGenSeed\"' /data/7DTD/serverconfig.xml | awk '{print $3}' | cut -d'\"' -f2");
+    file_put_contents("$INSTALL_DIR/Data/Worlds/$NEWESTDIR/WorldName.txt",$SEEDNAME);
+  }
+
 # Set default on the three touch files, if they don't already exist 
 if(!is_file($INSTALL_DIR.'/server.expected_status')) { file_put_contents($INSTALL_DIR.'/server.expected_status','start'); chown($INSTALL_DIR.'/server.expected_status','steam'); }
 if(!is_file($INSTALL_DIR.'/auto-reveal.status')) { file_put_contents($INSTALL_DIR.'/auto-reveal.status','start'); chown($INSTALL_DIR.'/auto-reveal.status','steam'); }
@@ -72,8 +80,8 @@ if(is_file($INSTALL_DIR.'/7DaysToDieServer.x86_64')) switch($server_expected_sta
     $TELNET_CHECK=exec("netstat -anptu | grep LISTEN | grep $TELNETPORT");
     
     // send the two commands needed to save the world and shutdown the server
-    exec("/7dtd-sendcmd.sh \"saveworld\"");
-    exec("/7dtd-sendcmd.sh \"shutdown\"");
+    exec("/7dtd-sendcmd.php \"saveworld\"");
+    exec("/7dtd-sendcmd.php \"shutdown\"");
     
     // If we are restarting, we should set the touch file to start on next iteration, then sleep to give server a chance to shutdown
     if($server_expected_status=='restart')
